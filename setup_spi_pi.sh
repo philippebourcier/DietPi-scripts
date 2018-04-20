@@ -6,6 +6,8 @@
 # The less LEDs you have, the more FPS you get... below 25 FPS, your animation won't look good...
 # but if you don't care (ie: no animation), you can drive tens of thousands of LEDs (on a single output).
 
+# Don't be stupid, read this file up to its end... (hint: SSH access...)
+
 # man... How can you live without Vim ?
 # redundant with dietpi.txt config
 #apt -y install vim
@@ -67,6 +69,26 @@ if [ -t 0 ]; then
         /DietPi/dietpi/login
 fi
 EOF
+
+# my pubkeys... you should use yours here :)
+# if you don't want to contribute to the Internet of Shit, don't use passwords
+my_keys="https://raw.githubusercontent.com/philippebourcier/pubkeys/master/authorized_keys"
+mkdir /root/.ssh
+mkdir /home/dietpi/.ssh
+wget -O/root/.ssh/authorized_keys $my_keys
+wget -O/home/dietpi/.ssh/authorized_keys $my_keys
+chown -R dietpi:dietpi /home/dietpi/.ssh
+sed -i 's/PermitRootLogin/#PermitRootLogin/g' /etc/ssh/sshd_config
+echo -e "PasswordAuthentication no\nPermitRootLogin prohibit-password" >> /etc/ssh/sshd_config
+
+# Let's get TheBigLEDowSPI
+wget -O/usr/local/bin/TheBigLEDowSPI https://github.com/philippebourcier/TheBigLEDowSPI/raw/master/TheBigLEDowSPI
+chmod 755 /usr/local/bin/TheBigLEDowSPI
+
+# You could automatically launch it on startup like this... uncomment and change the IP of the master server...
+sed -i 's/exit/#\/usr\/local\/bin\/TheBigLEDowSPI 127.0.0.1 4200 \/dev\/spidev0.0 10 3000 \& chrt -f -p 99 \$!\n\nexit/g' /etc/rc.local
+# the chrt thing sets the process as being realtime on the kernel side
+# ...and of course, you can launch another process on /dev/spidev1.0
 
 exit 0
 
