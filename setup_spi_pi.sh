@@ -7,7 +7,8 @@
 # but if you don't care (ie: no animation), you can drive tens of thousands of LEDs (on a single output).
 
 # man... How can you live without Vim ?
-apt -y install vim
+# redundant with dietpi.txt config
+#apt -y install vim
 
 # if you are testing with the python script, you should uncomment the following line
 #apt -y install pypy
@@ -18,9 +19,9 @@ sed -i 's/exit/\/usr\/bin\/tvservice -o\n\nexit/g' /etc/rc.local
 sed -i 's/exit/echo "performance" > \/sys\/devices\/system\/cpu\/cpu0\/cpufreq\/scaling_governor\n\nexit/g' /etc/rc.local
 
 # set SPI HW buffer size to 20K (5120 APA102/SK9822 SPI LEDs... the maximum doable by the LEDs to keep FPS above 25)
-sed -i '$ s/$/ spidev.bufsiz=20480/g' cmdline.txt
+sed -i '$ s/$/ spidev.bufsiz=20480/g' /boot/cmdline.txt
 # disable serial console (UART) so we can enable SPI1
-sed -i 's/console=serial0,115200 //g' cmdline.txt
+sed -i 's/console=serial0,115200 //g' /boot/cmdline.txt
 
 # disable bad or useless things
 cat << EOF > /etc/modprobe.d/raspi-blacklist.conf
@@ -36,10 +37,11 @@ blacklist ip_tables
 blacklist x_tables
 EOF
 
-# disable BT and enable SPI 0 and 1
+# disable BT+audio and enable SPI 0 and 1
 echo /DietPi/config.txt /boot/config.txt | tr ' ' '\n' | while read thisfile; do
 if [ -f $thisfile ]; then
 sed -i 's/dtparam=spi=off/dtparam=spi=on/g' $thisfile
+sed -i 's/dtparam=audio=on/dtparam=audio=off/g' $thisfile 
 cat << EOF >> $thisfile
 ####### NEW (enable SPI1)
 dtoverlay=pi3-disable-bt
