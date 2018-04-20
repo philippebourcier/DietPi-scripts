@@ -54,5 +54,19 @@ EOF
 fi
 done
 
+# things I hate
+# Vim VISUAL WTF!
+sed -i 's/  set mouse=a//g' /usr/share/vim/vim80/defaults.vim
+# SCP broken by interactive script
+echo /root/.bashrc /home/dietpi/.bashrc | tr ' ' '\n' | while read thisfile; do
+cat << EOF > $thisfile
+# ~/.bashrc: executed by bash(1) for non-login shells.
+alias ll='ls $LS_OPTIONS -laF'
+. /DietPi/dietpi/func/dietpi-globals
+if [ -t 0 ]; then
+        /DietPi/dietpi/login
+fi
+EOF
+
 exit 0
 
