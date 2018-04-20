@@ -69,6 +69,7 @@ if [ -t 0 ]; then
         /DietPi/dietpi/login
 fi
 EOF
+done
 
 # my pubkeys... you should use yours here :)
 # if you don't want to contribute to the Internet of Shit, don't use passwords
