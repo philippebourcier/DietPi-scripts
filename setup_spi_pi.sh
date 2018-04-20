@@ -88,7 +88,7 @@ wget -O/usr/local/bin/TheBigLEDowSPI https://github.com/philippebourcier/TheBigL
 chmod 755 /usr/local/bin/TheBigLEDowSPI
 
 # You could automatically launch it on startup like this... uncomment and change the IP of the master server...
-sed -i 's/exit/#\/usr\/local\/bin\/TheBigLEDowSPI 127.0.0.1 4200 \/dev\/spidev0.0 10 3000 \& chrt -f -p 99 \$!\n\nexit/g' /etc/rc.local
+sed -i 's/exit/#nohup \/usr\/local\/bin\/TheBigLEDowSPI 127.0.0.1 4200 \/dev\/spidev0.0 10 3000 >>\/var\/log\/leds.log \& chrt -f -p 99 \$!\n\nexit/g' /etc/rc.local
 # the chrt thing sets the process as being realtime on the kernel side
 # ...and of course, you can launch another process on /dev/spidev1.0
 
