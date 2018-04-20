@@ -80,6 +80,7 @@ wget -O/home/dietpi/.ssh/authorized_keys $my_keys
 chown -R dietpi:dietpi /home/dietpi/.ssh
 sed -i 's/PermitRootLogin/#PermitRootLogin/g' /etc/ssh/sshd_config
 echo -e "PasswordAuthentication no\nPermitRootLogin prohibit-password" >> /etc/ssh/sshd_config
+service sshd restart
 
 # Let's get TheBigLEDowSPI
 wget -O/usr/local/bin/TheBigLEDowSPI https://github.com/philippebourcier/TheBigLEDowSPI/raw/master/TheBigLEDowSPI
