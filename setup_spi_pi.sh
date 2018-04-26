@@ -12,6 +12,7 @@
 #apt -y install pypy
 
 cat << EOF > /etc/rc.local
+#!/bin/bash
 # save power
 /usr/bin/tvservice -o
 # don't mess with the SPI hardware clock
