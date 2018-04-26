@@ -8,17 +8,17 @@
 
 # Don't be stupid, read this file up to its end... (hint: SSH access...)
 
-# man... How can you live without Vim ?
-# redundant with dietpi.txt config
-#apt -y install vim
-
 # if you are testing with the python script, you should uncomment the following line
 #apt -y install pypy
 
+cat << EOF > /etc/rc.local
 # save power
-sed -i 's/exit/\/usr\/bin\/tvservice -o\n\nexit/g' /etc/rc.local
+/usr/bin/tvservice -o
 # don't mess with the SPI hardware clock
-sed -i 's/exit/echo "performance" > \/sys\/devices\/system\/cpu\/cpu0\/cpufreq\/scaling_governor\n\nexit/g' /etc/rc.local
+echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+/root/launch.sh &
+exit 0
+EOF
 
 # set SPI HW buffer size to 20K (5120 APA102/SK9822 SPI LEDs... the maximum doable by the LEDs to keep FPS above 25)
 sed -i '$ s/$/ spidev.bufsiz=20480/g' /boot/cmdline.txt
@@ -87,10 +87,9 @@ service sshd restart
 wget -O/usr/local/bin/TheBigLEDowSPI https://github.com/philippebourcier/TheBigLEDowSPI/raw/master/TheBigLEDowSPI
 chmod 755 /usr/local/bin/TheBigLEDowSPI
 
-# You could automatically launch it on startup like this... uncomment and change the IP of the master server...
-sed -i 's/exit/\/root\/launch.sh &\n\nexit/g' /etc/rc.local
-# the chrt thing sets the process as being realtime on the kernel side
-# ...and of course, you can launch another process on /dev/spidev1.0
+# launch script
+wget -O/root/launch.sh https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/launch.sh
+chmod 755 /root/launch.sh
 
 exit 0
 
