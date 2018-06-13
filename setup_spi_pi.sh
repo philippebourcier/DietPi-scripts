@@ -11,12 +11,20 @@
 # if you are testing with the python script, you should uncomment the following line
 #apt -y install pypy
 
+# that avahi thingy, ugly but practical...
+# comment this, if you don't use Avahi (or if you don't know what it is)
+wget -O/etc/avahi/avahi-daemon.conf https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/avahi-daemon.conf
+systemctl disable dbus
+
 cat << EOF > /etc/rc.local
 #!/bin/bash
 # save power
 /usr/bin/tvservice -o
 # don't mess with the SPI hardware clock
 echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+# launching avahi, in case systemd did not... (bug in DietPi 6.9)
+/usr/sbin/avahi-daemon -D
+# launch our stuff
 /root/launch.sh &
 exit 0
 EOF
@@ -65,10 +73,11 @@ echo /root/.bashrc /home/dietpi/.bashrc | tr ' ' '\n' | while read thisfile; do
 cat << EOF > $thisfile
 # ~/.bashrc: executed by bash(1) for non-login shells.
 alias ll='ls $LS_OPTIONS -laF'
-. /DietPi/dietpi/func/dietpi-globals
-if [ -t 0 ]; then
-        /DietPi/dietpi/login
-fi
+# no more needed post DietPi 6.8
+#. /DietPi/dietpi/func/dietpi-globals
+#if [ -t 0 ]; then
+#        /DietPi/dietpi/login
+#fi
 EOF
 done
 
