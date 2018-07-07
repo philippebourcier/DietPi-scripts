@@ -11,6 +11,10 @@
 # if you are testing with the python script, you should uncomment the following line
 #apt -y install pypy
 
+# install dnsmasq
+apt -y install dnsmasq
+systemctl disable dnsmasq
+
 # that avahi thingy, ugly but practical...
 # comment this, if you don't use Avahi (or if you don't know what it is)
 wget -O/etc/avahi/avahi-daemon.conf https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/avahi-daemon.conf
