@@ -71,7 +71,7 @@ AUTO_SETUP_AUTOMATED=1
 #		eg: MySQL, Transmission, Deluge etc.
 #		WARN: Passwords with the any of the following characters are not supported: \"$
 #		WARN: Do NOT change this entry after 1st run setup of DietPi has been completed. It is always scraped by dietpi-software.
-AUTO_SETUP_GLOBAL_PASSWORD=dietpi
+AUTO_SETUP_GLOBAL_PASSWORD=LED.Sk1pp3r
 
 #	DietPi-Software to automatically install. | requires AUTO_SETUP_AUTOMATED=1
 #	For a list of software index's (ID's), run '/DietPi/dietpi/dietpi-software list'
@@ -83,7 +83,9 @@ AUTO_SETUP_GLOBAL_PASSWORD=dietpi
 #AUTO_SETUP_INSTALL_SOFTWARE_ID=44	#will install Bittorrent transmission
 
 AUTO_SETUP_INSTALL_SOFTWARE_ID=20	# Vim
-AUTO_SETUP_INSTALL_SOFTWARE_ID=152	# Avahi
+
+# IF YOU NEED mDNS ...
+#AUTO_SETUP_INSTALL_SOFTWARE_ID=152	# Avahi
 
 #	DietPi-Software Choice System
 #	SSH Server Selection:
@@ -123,7 +125,7 @@ AUTO_SETUP_TIMEZONE=UTC
 #		Locale eg: en_GB.UTF-8 / en_US.UTF-8 etc. One entry ONLY.
 AUTO_SETUP_LOCALE=en_GB.UTF-8
 #		Keyboard Layout eg: gb us de fr
-AUTO_SETUP_KEYBOARD_LAYOUT=us
+AUTO_SETUP_KEYBOARD_LAYOUT=fr
 
 #	Custom Script | Requires AUTO_SETUP_AUTOMATED=1
 #		Allows you to automatically execute a custom script at the end of DietPi installation.
@@ -154,23 +156,6 @@ CONFIG_CPU_ONDEMAND_SAMPLE_RATE=25000
 
 #sampling rate * down factor / 1000 = Milliseconds (40 = 1000ms when sampling rate is 25000)
 CONFIG_CPU_ONDEMAND_SAMPLE_DOWNFACTOR=80
-
-#Samba Client Details (Used by DietPi-Config | Networking NAS | Samba Client)
-#	NB: Do not modify, you must use dietpi-config to configure/set options
-CONFIG_SMBCLIENT_COMPUTERNAME=computername
-CONFIG_SMBCLIENT_SHARENAME=sharename
-CONFIG_SMBCLIENT_USERNAME=username
-CONFIG_SMBCLIENT_PASSWORD=password
-
-#FTP Client Filesystem Mount (CurlFtpFs) (Used by DietPi-Config | Networking NAS | FTP Client)
-#	NB: Do not modify, you must use dietpi-config to configure/set options
-CONFIG_CURLFTPFS_ADDRESS=192.168.0.100
-CONFIG_CURLFTPFS_USERNAME=username
-CONFIG_CURLFTPFS_PASSWORD=password
-
-#NFS Client Filesystem Mount (Used by DietPi-Config | Networking NAS | NFS Client)
-#	NB: Do not modify, you must use dietpi-config to configure/set options
-CONFIG_NFSCLIENT_ADDRESS=
 
 #Proxy settings | System-wide proxy settings. Use dietpi-config > networking options to apply.
 #	NB: Do not modify, you must use dietpi-config to configure/set options

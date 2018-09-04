@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -x /usr/local/bin/TheBigLEDowSPI ]; then
+	exit 0
+fi
+
 while [ 1 ]; do
 
 # launching the program

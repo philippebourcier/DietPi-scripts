@@ -13,8 +13,8 @@
 
 # that avahi thingy, ugly but practical...
 # comment this, if you don't use Avahi (or if you don't know what it is)
-wget -O/etc/avahi/avahi-daemon.conf https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/avahi-daemon.conf
-systemctl disable dbus
+#wget -O/etc/avahi/avahi-daemon.conf https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/avahi-daemon.conf
+#systemctl disable dbus
 
 cat << EOF > /etc/rc.local
 #!/bin/bash
@@ -23,7 +23,7 @@ cat << EOF > /etc/rc.local
 # don't mess with the SPI hardware clock
 echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 # launching avahi, in case systemd did not... (bug in DietPi 6.9)
-/usr/sbin/avahi-daemon -D
+#/usr/sbin/avahi-daemon -D
 # launch our stuff
 /root/launch.sh &
 exit 0
@@ -43,6 +43,8 @@ blacklist hci_uart
 ## wifi
 blacklist cfg80211
 blacklist ecdh_generic
+## sound
+blacklist snd_bcm2835
 ## FW
 blacklist ip_tables
 blacklist x_tables
@@ -94,8 +96,8 @@ echo -e "PasswordAuthentication no\nPermitRootLogin prohibit-password" >> /etc/s
 service sshd restart
 
 # Let's get TheBigLEDowSPI
-wget -O/usr/local/bin/TheBigLEDowSPI https://github.com/philippebourcier/TheBigLEDowSPI/raw/master/TheBigLEDowSPI
-chmod 755 /usr/local/bin/TheBigLEDowSPI
+#wget -O/usr/local/bin/TheBigLEDowSPI https://github.com/philippebourcier/TheBigLEDowSPI/raw/master/TheBigLEDowSPI
+#chmod 755 /usr/local/bin/TheBigLEDowSPI
 
 # launch script
 wget -O/root/launch.sh https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/launch.sh
