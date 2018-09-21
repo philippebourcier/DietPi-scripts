@@ -19,6 +19,7 @@ systemctl disable dnsmasq
 # comment this, if you don't use Avahi (or if you don't know what it is)
 #wget -O/etc/avahi/avahi-daemon.conf https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/avahi-daemon.conf
 #systemctl disable dbus
+#systemctl disable dbus.socket
 
 cat << EOF > /etc/rc.local
 #!/bin/bash
@@ -26,8 +27,6 @@ cat << EOF > /etc/rc.local
 /usr/bin/tvservice -o
 # don't mess with the SPI hardware clock
 echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-# launching avahi, in case systemd did not... (bug in DietPi 6.9)
-#/usr/sbin/avahi-daemon -D
 # launch our stuff
 /root/launch.sh &
 exit 0
