@@ -18,8 +18,6 @@ systemctl disable dnsmasq
 # that avahi thingy, ugly but practical...
 # comment this, if you don't use Avahi (or if you don't know what it is)
 #wget -O/etc/avahi/avahi-daemon.conf https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/avahi-daemon.conf
-#systemctl disable dbus
-#systemctl disable dbus.socket
 
 cat << EOF > /etc/rc.local
 #!/bin/bash
@@ -29,6 +27,8 @@ cat << EOF > /etc/rc.local
 echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 # launch our stuff
 /root/launch.sh &
+# if avahi is installed, stop dbus
+# sleep 10 && service dbus stop
 exit 0
 EOF
 
