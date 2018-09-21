@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This is the launcher for the closed-source version of our software...
+# for TheBigLEDowSPI, you should keep using the older launch.sh script
+
 if [ ! -x /usr/bin/nodejs ]; then
 	exit 0
 fi
