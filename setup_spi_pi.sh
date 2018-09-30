@@ -102,9 +102,8 @@ service sshd restart
 #wget -O/usr/local/bin/TheBigLEDowSPI https://github.com/philippebourcier/TheBigLEDowSPI/raw/master/TheBigLEDowSPI
 #chmod 755 /usr/local/bin/TheBigLEDowSPI
 
-# launch script
-wget -O/root/launch.sh https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/launch.sh
-chmod 755 /root/launch.sh
+# update boot wait to 10s max
+sed -i "/^CONFIG_BOOT_WAIT_FOR_NETWORK=/c CONFIG_BOOT_WAIT_FOR_NETWORK=1" /DietPi/dietpi.txt
 
 exit 0
 
