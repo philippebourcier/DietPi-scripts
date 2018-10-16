@@ -4,7 +4,7 @@
 
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
-apt-get install -y nodejs build-essential
+# apt-get install -y nodejs build-essential
 
-npm -g install express socket.io body-parser 
+npm -g install express socket.io body-parser mdns
 
