@@ -38,9 +38,9 @@ AUTO_SETUP_NET_WIFI_KEYMGR=WPA-PSK
 
 #	Enter your Static Network details below, if applicable.
 AUTO_SETUP_NET_USESTATIC=0
-AUTO_SETUP_NET_STATIC_IP=192.168.0.100
+AUTO_SETUP_NET_STATIC_IP=192.168.1.0
 AUTO_SETUP_NET_STATIC_MASK=255.255.255.0
-AUTO_SETUP_NET_STATIC_GATEWAY=192.168.0.1
+AUTO_SETUP_NET_STATIC_GATEWAY=192.168.1.254
 AUTO_SETUP_NET_STATIC_DNS=8.8.8.8
 
 #	Hostname
@@ -166,7 +166,7 @@ CONFIG_PROXY_USERNAME=
 CONFIG_PROXY_PASSWORD=
 
 #Delay boot until network is established: 0=disabled | 1=10 second wait max (default) | 2=infinite wait
-CONFIG_BOOT_WAIT_FOR_NETWORK=2
+CONFIG_BOOT_WAIT_FOR_NETWORK=1
 
 #DietPi check for updates (allows dietpi to check for updates on a daily basis and boot using a <1kb file download.)
 CONFIG_CHECK_DIETPI_UPDATES=0

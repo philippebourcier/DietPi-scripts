@@ -12,8 +12,8 @@
 #apt -y install pypy
 
 # install dnsmasq
-apt -y install dnsmasq
-systemctl disable dnsmasq
+#apt -y install dnsmasq
+#systemctl disable dnsmasq
 
 # that avahi thingy, ugly but practical...
 # comment this, if you don't use Avahi (or if you don't know what it is)
@@ -26,7 +26,7 @@ cat << EOF > /etc/rc.local
 # don't mess with the SPI hardware clock
 echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 # launch our stuff
-/root/launch.sh &
+#/root/launch.sh &
 # if avahi is installed, stop dbus
 # sleep 10 && service dbus stop
 exit 0
@@ -103,7 +103,7 @@ service sshd restart
 #chmod 755 /usr/local/bin/TheBigLEDowSPI
 
 # update boot wait to 10s max
-sed -i "/^CONFIG_BOOT_WAIT_FOR_NETWORK=/c CONFIG_BOOT_WAIT_FOR_NETWORK=1" /DietPi/dietpi.txt
+sed -i "/^CONFIG_BOOT_WAIT_FOR_NETWORK=/c CONFIG_BOOT_WAIT_FOR_NETWORK=0" /DietPi/dietpi.txt
 
 exit 0
 
