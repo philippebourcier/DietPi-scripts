@@ -2,7 +2,7 @@
 
 /DietPi/dietpi/func/dietpi-set_hardware i2c enable
 
-apt install build-essential
+apt -y install build-essential
 pip install wheel
 pip3 install wheel
 
