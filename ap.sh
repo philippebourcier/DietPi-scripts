@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dietpi-software install 60
+
 cat << EOF > /etc/dhcp/dhcpd.conf
 ddns-update-style none;
 default-lease-time 600;
