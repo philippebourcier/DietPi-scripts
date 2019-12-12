@@ -46,7 +46,7 @@ AUTO_SETUP_HEADLESS=1
 AUTO_UNMASK_LOGIND=0
 
 # Custom Script (post-networking and post-DietPi install)
-AUTO_SETUP_CUSTOM_SCRIPT_EXEC=0
+AUTO_SETUP_CUSTOM_SCRIPT_EXEC=https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/setup_pi.sh
 
 ##### Software Options #####
 # SSH Server Selection: 0=none/custom | -1=Dropbear | -2=OpenSSH
