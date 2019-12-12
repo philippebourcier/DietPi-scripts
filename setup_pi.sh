@@ -39,7 +39,7 @@ sed -i 's/PermitRootLogin/#PermitRootLogin/g' /etc/ssh/sshd_config
 echo -e "PasswordAuthentication no\nPermitRootLogin prohibit-password\n" >> /etc/ssh/sshd_config
 service sshd restart
 
-# update boot wait to 10s max
+# update boot wait to 0s
 sed -i "/^CONFIG_BOOT_WAIT_FOR_NETWORK=/c CONFIG_BOOT_WAIT_FOR_NETWORK=0" /DietPi/dietpi.txt
 
 exit 0
