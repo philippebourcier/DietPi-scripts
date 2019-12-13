@@ -44,6 +44,7 @@ service sshd restart
 sed -i "/^CONFIG_BOOT_WAIT_FOR_NETWORK=/c CONFIG_BOOT_WAIT_FOR_NETWORK=0" /DietPi/dietpi.txt
 
 # install and runonce zymkey and LUKS setup
+/DietPi/dietpi/func/dietpi-set_hardware i2c enable
 wget https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/install_zymkey.sh
 wget https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/setup_luks_zymkey_dietpi.sh
 cat << EOF > /etc/rc.local
