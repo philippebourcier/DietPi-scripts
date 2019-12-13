@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # This script is launched only once, during DietPi automated installation.
+cd /root/
 
 # that avahi thingy, ugly but practical...
-wget -O/etc/avahi/avahi-daemon.conf https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/avahi-daemon.conf
+#wget -O/etc/avahi/avahi-daemon.conf https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/avahi-daemon.conf
 
 # disable serial console (UART) so we can enable SPI1
 sed -i 's/console=serial0,115200 //g' /boot/cmdline.txt
