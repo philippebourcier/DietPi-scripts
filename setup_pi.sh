@@ -48,12 +48,16 @@ wget https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/in
 wget https://raw.githubusercontent.com/philippebourcier/DietPi-scripts/master/setup_luks_zymkey_dietpi.sh
 cat << EOF > /etc/rc.local
 #!/bin/bash
+
+sed -i '/reboot/d' /etc/rc.local
+reboot
+
 sed -i '/install_zymkey.sh/d' /etc/rc.local
 bash /root/install_zymkey.sh
-# reboot
+
 sed -i '/setup_luks_zymkey_dietpi.sh/d' /etc/rc.local
 bash /root/setup_luks_zymkey_dietpi.sh
-# reboot
+
 EOF
 
 exit 0
